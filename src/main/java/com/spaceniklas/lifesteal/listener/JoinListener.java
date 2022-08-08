@@ -3,8 +3,6 @@ package com.spaceniklas.lifesteal.listener;
 import com.spaceniklas.lifesteal.Lifesteal;
 import com.spaceniklas.lifesteal.managers.HeartManager;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -34,15 +32,19 @@ public class JoinListener implements Listener {
 
     }
     @EventHandler
-    public void onReviveJoin(PlayerJoinEvent e){
-        if(Lifesteal.revive.get(e.getPlayer().getUniqueId().toString()).equals(1)){
-            HeartManager.setHearts(8, e.getPlayer());
-            Lifesteal.revive.set(e.getPlayer().getUniqueId().toString(), 0);
-            try {
-                Lifesteal.revive.save(Lifesteal.revivefile);
-            } catch (IOException ex) {
-                ex.printStackTrace();
+    public void onReviveJoin(PlayerJoinEvent e) {
+        try {
+            if (Lifesteal.revive.get(e.getPlayer().getUniqueId().toString()).equals(1)) {
+                HeartManager.setHearts(8, e.getPlayer());
+                Lifesteal.revive.set(e.getPlayer().getUniqueId().toString(), 0);
+                try {
+                    Lifesteal.revive.save(Lifesteal.revivefile);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
+        }catch (NullPointerException x){
+
         }
     }
 
