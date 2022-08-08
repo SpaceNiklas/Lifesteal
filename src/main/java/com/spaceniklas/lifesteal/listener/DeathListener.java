@@ -12,8 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import org.checkerframework.checker.units.qual.Luminance;
-
 import java.nio.Buffer;
 
 public class DeathListener implements Listener {

@@ -15,10 +15,14 @@ public class HealCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if(args.length == 2 && sender.hasPermission("lifesteal.heal")){
-            Bukkit.getPlayer(args[0]).setHealth(Integer.parseInt(args[1]));
-            if(sender instanceof Player)
-                ((Player) sender).playSound(((Player) sender).getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 1);
-            sender.sendMessage(ChatColor.GREEN + args[0] + " was successfully healed!");
+            if(Bukkit.getPlayer(args[0]).isOnline()) {
+                Bukkit.getPlayer(args[0]).setHealth(Integer.parseInt(args[1]));
+                if (sender instanceof Player)
+                    ((Player) sender).playSound(((Player) sender).getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 1);
+                sender.sendMessage(ChatColor.GREEN + args[0] + " was successfully healed!");
+            }else {
+                sender.sendMessage(ChatColor.RED + "Given player is not online!");
+            }
         }else if(args.length == 0 && sender instanceof Player){
             ((Player) sender).setHealth(((Player) sender).getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue());
             if(sender instanceof Player)
