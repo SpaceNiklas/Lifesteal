@@ -1,0 +1,24 @@
+name: Lifesteal
+version: '1.0'
+main: com.spaceniklas.lifesteal.Lifesteal
+api-version: 1.18
+prefix: [ Lifesteal ]
+authors: [ SpaceNiklas ]
+description: Lifesteal Plugin by SpaceNiklas
+website: www.spaceniklas.com
+commands:
+
+  withdraw:
+
+  set:
+
+  revive:
+
+  heal:
+
+  eliminate:
+
+  get:
+
+
+

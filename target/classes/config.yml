@@ -1,0 +1,45 @@
+#Lifesteal SMP Plugin Config v.1.0
+#If you need any help regarding this plugin do not hesitate to contact us!
+#If you want a custom feature coded exclusively for you, you can request it in the "#exclusive-features" channel found in the discord server!
+#Discord:
+#SpigotMC:
+
+
+
+#########################
+##Settings [true|false]##
+#########################
+
+#This setting allows you to decide if you want players to lose hearts in the case of a natural death e.g.: fall-damage, fire-damage...
+RemoveHeartOnNaturalDeath: false
+
+#This setting allows you to decide if you want players to lose hearts if the get killed by a player!
+RemoveHeartsWhenKilled: true
+
+#This setting allows you to decide if you want players to withdraw hearts through a command!
+EnableWithdrawCommand: true
+
+#This setting allows you to decide if you want players to use the Totem of Revival to revive players!
+EnableTotemOfRevival: true
+
+#This setting allows you to decide if you want players to be able to use hearts to gain more hearts!
+EnableHearts: true
+
+#This setting allows you to decide if you want players to use the Beacon of Life to revive players!
+
+#!!THIS SETTING ONLY WORKS IN VERSION 1.1!!
+EnableBeaconOfLife: false
+
+#This setting allows you to decide if you want players to be able to craft hearts!
+EnableHeartCrafting: true
+
+#This setting allows you to decide if you want players to be able to craft the Totem of Revival!
+EnableTotemOfRevivalCrafting: true
+
+#This setting allows you to decide if you want players to be able to craft the Beacon of Life!
+
+#!!THIS SETTING ONLY WORKS IN VERSION 1.1!!
+EnableBeaconOfLifeCrafting: false
+
+
+

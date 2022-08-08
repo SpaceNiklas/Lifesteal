@@ -1,0 +1,17 @@
+com/spaceniklas/lifesteal/commands/EliminateCommand.class
+com/spaceniklas/lifesteal/tabcompleter/GetTab.class
+com/spaceniklas/lifesteal/commands/GetCommand.class
+com/spaceniklas/lifesteal/listener/MenuListener.class
+com/spaceniklas/lifesteal/commands/SetCommand.class
+com/spaceniklas/lifesteal/tabcompleter/EliminateTab.class
+com/spaceniklas/lifesteal/menus/DecisionMenu.class
+com/spaceniklas/lifesteal/Lifesteal.class
+com/spaceniklas/lifesteal/tabcompleter/ReviveTab.class
+com/spaceniklas/lifesteal/listener/JoinListener.class
+com/spaceniklas/lifesteal/listener/DeathListener.class
+com/spaceniklas/lifesteal/commands/WithdrawCommand.class
+com/spaceniklas/lifesteal/commands/ReviveCommand.class
+com/spaceniklas/lifesteal/commands/HealCommand.class
+com/spaceniklas/lifesteal/listener/ClickListener.class
+com/spaceniklas/lifesteal/managers/HeartManager.class
+com/spaceniklas/lifesteal/menus/ReviveMenu.class
