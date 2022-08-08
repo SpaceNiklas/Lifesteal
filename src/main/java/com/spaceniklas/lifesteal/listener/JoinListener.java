@@ -23,7 +23,6 @@ public class JoinListener implements Listener {
         UUID pu = p.getUniqueId();
 
         if(!Lifesteal.hearts.contains(pu.toString())) {
-            p.sendMessage("asdasyff");
             Lifesteal.hearts.set(pu.toString(), 20);
             try {
                 Lifesteal.hearts.save(Lifesteal.heartsfile);
