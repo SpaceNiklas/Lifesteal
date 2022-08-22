@@ -10,6 +10,9 @@
 ##Settings [true|false]##
 #########################
 
+#Here you can add the world(s) you want your players to lose/gain hearts in!
+worlds: [world, world_nether, world_the_end]
+
 #This setting allows you to decide if you want players to lose hearts in the case of a natural death e.g.: fall-damage, fire-damage...
 RemoveHeartOnNaturalDeath: false
 

@@ -13,6 +13,7 @@ public class HeartManager {
 
     public static void removeHearts(int amount, Player target){
 
+    if(Lifesteal.config.getList("worlds").contains(target.getWorld().getName())) {
         int famount = (int) Lifesteal.hearts.get(target.getUniqueId().toString()) - amount;
 
         Lifesteal.hearts.set(target.getUniqueId().toString(), famount);
@@ -25,39 +26,41 @@ public class HeartManager {
 
         target.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(famount);
     }
+    }
 
     public static void addHearts(int amount, Player target){
+        if(Lifesteal.config.getList("worlds").contains(target.getWorld().getName())) {
+            int famount = (int) Lifesteal.hearts.get(target.getUniqueId().toString()) + amount;
 
-        int famount = (int)Lifesteal.hearts.get(target.getUniqueId().toString()) + amount;
+            Lifesteal.hearts.set(target.getUniqueId().toString(), famount);
+            try {
+                Lifesteal.hearts.save(Lifesteal.heartsfile);
+            } catch (IOException e) {
+                e.printStackTrace();
+                Bukkit.getLogger().info("[Error] Can't save hearts.yml file!");
+            }
 
-        Lifesteal.hearts.set(target.getUniqueId().toString(), famount);
-        try {
-            Lifesteal.hearts.save(Lifesteal.heartsfile);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Bukkit.getLogger().info("[Error] Can't save hearts.yml file!");
+
+            target.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(famount);
         }
-
-
-        target.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(famount);
     }
 
     public static void setHearts(int amount, Player target){
+        if(Lifesteal.config.getList("worlds").contains(target.getWorld().getName())) {
+            Lifesteal.hearts.set(target.getUniqueId().toString(), amount);
+            try {
+                Lifesteal.hearts.save(Lifesteal.heartsfile);
+            } catch (IOException e) {
+                e.printStackTrace();
+                Bukkit.getLogger().info("[Error] Can't save hearts.yml file!");
+            }
 
-        Lifesteal.hearts.set(target.getUniqueId().toString(), amount);
-        try {
-            Lifesteal.hearts.save(Lifesteal.heartsfile);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Bukkit.getLogger().info("[Error] Can't save hearts.yml file!");
+
+            target.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(amount);
         }
-
-
-        target.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(amount);
     }
 
     public static void playerRevive(OfflinePlayer target){
-
         Lifesteal.revive.set(target.getUniqueId().toString(), 1);
         try {
             Lifesteal.revive.save(Lifesteal.revivefile);
