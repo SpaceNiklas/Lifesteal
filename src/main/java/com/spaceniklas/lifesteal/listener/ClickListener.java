@@ -21,6 +21,9 @@ public class ClickListener implements Listener {
             if(!p.getInventory().getItemInMainHand().equals(null)){
                 if(p.getInventory().getItemInMainHand().hasItemMeta()){
                     if(p.getInventory().getItemInMainHand().getType().equals(Material.NETHER_STAR) && Lifesteal.config.getBoolean("EnableHearts")) {
+                        if(!Lifesteal.config.getList("worlds").contains(p.getWorld().getName())&& Lifesteal.config.getBoolean("enabled")){
+                            return;
+                        }
                         HeartManager.addHearts(2, p);
                         p.sendMessage(ChatColor.GREEN + "You've received one heart!");
                         p.playNote(p.getLocation(), Instrument.PLING , Note.natural(1, Note.Tone.D));

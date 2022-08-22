@@ -22,6 +22,9 @@ public class WithdrawCommand implements CommandExecutor {
         //   /withdraw 10
         if(args.length == 1 && sender instanceof Player && Lifesteal.config.getBoolean("EnableWithdrawCommand")) {
             Player p = (Player) sender;
+            if(!Lifesteal.config.getList("worlds").contains(p.getWorld().getName())&& Lifesteal.config.getBoolean("enabled")){
+                return false;
+            }
             int amount = Integer.parseInt(args[0]);
 
             ItemStack heart = new ItemStack(Material.NETHER_STAR, amount);

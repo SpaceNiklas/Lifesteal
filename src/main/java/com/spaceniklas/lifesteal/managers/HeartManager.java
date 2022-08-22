@@ -14,6 +14,9 @@ public class HeartManager {
     public static void removeHearts(int amount, Player target){
 
     if(Lifesteal.config.getList("worlds").contains(target.getWorld().getName())) {
+        if(!Lifesteal.config.getList("worlds").contains(target.getWorld().getName())&& Lifesteal.config.getBoolean("enabled")){
+            return;
+        }
         int famount = (int) Lifesteal.hearts.get(target.getUniqueId().toString()) - amount;
 
         Lifesteal.hearts.set(target.getUniqueId().toString(), famount);
@@ -30,6 +33,9 @@ public class HeartManager {
 
     public static void addHearts(int amount, Player target){
         if(Lifesteal.config.getList("worlds").contains(target.getWorld().getName())) {
+            if(!Lifesteal.config.getList("worlds").contains(target.getWorld().getName())&& Lifesteal.config.getBoolean("enabled")){
+                return;
+            }
             int famount = (int) Lifesteal.hearts.get(target.getUniqueId().toString()) + amount;
 
             Lifesteal.hearts.set(target.getUniqueId().toString(), famount);
@@ -46,6 +52,9 @@ public class HeartManager {
     }
 
     public static void setHearts(int amount, Player target){
+        if(!Lifesteal.config.getList("worlds").contains(target.getWorld().getName())&& Lifesteal.config.getBoolean("enabled")){
+            return;
+        }
         if(Lifesteal.config.getList("worlds").contains(target.getWorld().getName())) {
             Lifesteal.hearts.set(target.getUniqueId().toString(), amount);
             try {
