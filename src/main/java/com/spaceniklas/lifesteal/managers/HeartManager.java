@@ -1,6 +1,7 @@
 package com.spaceniklas.lifesteal.managers;
 
 import com.spaceniklas.lifesteal.Lifesteal;
+import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.attribute.Attribute;
@@ -14,7 +15,7 @@ public class HeartManager {
     public static void removeHearts(int amount, Player target){
 
     if(Lifesteal.config.getList("worlds").contains(target.getWorld().getName())) {
-        if(!Lifesteal.config.getList("worlds").contains(target.getWorld().getName())&& Lifesteal.config.getBoolean("enabled")){
+        if(!Lifesteal.config.getList("worlds").contains(target.getWorld().getName()) && Lifesteal.config.getBoolean("enabled")){
             return;
         }
         int famount = (int) Lifesteal.hearts.get(target.getUniqueId().toString()) - amount;
@@ -33,7 +34,7 @@ public class HeartManager {
 
     public static void addHearts(int amount, Player target){
         if(Lifesteal.config.getList("worlds").contains(target.getWorld().getName())) {
-            if(!Lifesteal.config.getList("worlds").contains(target.getWorld().getName())&& Lifesteal.config.getBoolean("enabled")){
+            if(!Lifesteal.config.getList("worlds").contains(target.getWorld().getName()) && Lifesteal.config.getBoolean("enabled")){
                 return;
             }
             int famount = (int) Lifesteal.hearts.get(target.getUniqueId().toString()) + amount;
@@ -71,6 +72,7 @@ public class HeartManager {
 
     public static void playerRevive(OfflinePlayer target){
         Lifesteal.revive.set(target.getUniqueId().toString(), 1);
+        Lifesteal.banlist.remove(target.getUniqueId().toString());
         try {
             Lifesteal.revive.save(Lifesteal.revivefile);
         } catch (IOException e) {

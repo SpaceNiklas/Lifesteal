@@ -13,6 +13,11 @@
 #Here you can add the world(s) you want your players to lose/gain hearts in!
 enabled: false
 worlds: [world, world_nether, world_the_end]
+#Here you can set the location where a player will spawn if they are banned!
+world: 'lobby'
+x: 0
+y: 100
+z: 0
 
 #This setting allows you to decide if you want players to lose hearts in the case of a natural death e.g.: fall-damage, fire-damage...
 RemoveHeartOnNaturalDeath: false

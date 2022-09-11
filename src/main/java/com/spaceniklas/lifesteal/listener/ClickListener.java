@@ -37,7 +37,9 @@ public class ClickListener implements Listener {
             if(!p.getInventory().getItemInMainHand().equals(null)){
                 if(p.getInventory().getItemInMainHand().hasItemMeta()){
                     if(p.getInventory().getItemInMainHand().getType().equals(Material.TOTEM_OF_UNDYING) && Lifesteal.config.getBoolean("EnableTotemOfRevival")) {
-                        ReviveMenu.openReviveMenu(e.getPlayer());
+                        if(Lifesteal.config.getList("worlds").contains(p.getWorld().getName())){
+                            ReviveMenu.openReviveMenu(e.getPlayer());
+                        }
                     }
                 }
             }

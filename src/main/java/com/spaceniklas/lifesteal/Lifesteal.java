@@ -24,10 +24,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 public final class Lifesteal extends JavaPlugin {
 
@@ -36,9 +36,17 @@ public final class Lifesteal extends JavaPlugin {
     public static YamlConfiguration revive;
     public static File revivefile;
     public static FileConfiguration config;
+    public static YamlConfiguration eliminate;
+    public static File eliminateFile;
+    public static List<String> banlist = new ArrayList<String>();
+    public static List<String> worlds;
+    public static boolean enabled;
+    public static Lifesteal instance;
 
     @Override
     public void onEnable() {
+
+        instance = this;
 
         Bukkit.getLogger().info("[Lifesteal] Plugin is up!");
 
@@ -98,6 +106,25 @@ public final class Lifesteal extends JavaPlugin {
         }
 
         Lifesteal.revive = YamlConfiguration.loadConfiguration(revivefile);
+
+        eliminateFile = new File(getDataFolder(), "eliminate.yml");
+
+        if(!eliminateFile.exists()){
+            try {
+                eliminateFile.createNewFile();
+            } catch (IOException e) {
+                Bukkit.getLogger().info("[Error] Can't load eliminate.yml file!");
+                e.printStackTrace();
+                return;
+            }
+        }
+
+        Lifesteal.eliminate = YamlConfiguration.loadConfiguration(eliminateFile);
+
+        banlist = eliminate.getStringList("banlist");
+
+        worlds = config.getStringList("worlds");
+        enabled = config.getBoolean("enabled");
     }
 
     public void craftingRecipe(){
@@ -144,6 +171,15 @@ public final class Lifesteal extends JavaPlugin {
             Bukkit.addRecipe(reviverecipe);
 
 
+    }
+
+    public void onDisable(){
+        eliminate.set("banlist", banlist);
+        try {
+            eliminate.save(eliminateFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
