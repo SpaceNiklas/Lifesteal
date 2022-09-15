@@ -3,6 +3,7 @@ package com.spaceniklas.lifesteal.managers;
 import com.spaceniklas.lifesteal.Lifesteal;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
@@ -35,6 +36,10 @@ public class HeartManager {
     public static void addHearts(int amount, Player target){
         if(Lifesteal.config.getList("worlds").contains(target.getWorld().getName())) {
             if(!Lifesteal.config.getList("worlds").contains(target.getWorld().getName()) && Lifesteal.config.getBoolean("enabled")){
+                return;
+            }
+            if(Integer.parseInt(Lifesteal.hearts.get(target.getUniqueId().toString()).toString())  >= Lifesteal.config.getInt("max-hearts")){
+                target.sendMessage(ChatColor.RED + "You've reached the maximum amount of hearts you can have!");
                 return;
             }
             int famount = (int) Lifesteal.hearts.get(target.getUniqueId().toString()) + amount;
