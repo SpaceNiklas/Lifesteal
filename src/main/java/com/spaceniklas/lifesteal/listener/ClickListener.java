@@ -24,6 +24,10 @@ public class ClickListener implements Listener {
                         if(!Lifesteal.config.getList("worlds").contains(p.getWorld().getName())&& Lifesteal.config.getBoolean("enabled")){
                             return;
                         }
+                        if(Integer.parseInt(Lifesteal.hearts.get(p.getUniqueId().toString()).toString())  >= Lifesteal.config.getInt("max-hearts")){
+                            p.sendMessage(ChatColor.RED + "You've reached the maximum amount of hearts you can have!");
+                            return;
+                        }
                         HeartManager.addHearts(2, p);
                         p.sendMessage(ChatColor.GREEN + "You've received one heart!");
                         p.playNote(p.getLocation(), Instrument.PLING , Note.natural(1, Note.Tone.D));

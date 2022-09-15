@@ -19,6 +19,8 @@ x: 0
 y: 100
 z: 0
 
+max-hearts: 80 #Sets the maximum amount of hearts a player can have. Measured in hp (2 hp = 1 heart)
+
 #This setting allows you to decide if you want players to lose hearts in the case of a natural death e.g.: fall-damage, fire-damage...
 RemoveHeartOnNaturalDeath: false
 
