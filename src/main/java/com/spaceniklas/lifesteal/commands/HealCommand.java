@@ -26,13 +26,15 @@ public class HealCommand implements CommandExecutor {
             }else{
                 sender.sendMessage(ChatColor.RED + "Given player is not online!");
             }
-        }else if(args.length == 0 && sender instanceof Player){
+        }else if(args.length == 0 && sender instanceof Player && sender.hasPermission("lifesteal.heal")){
             ((Player) sender).setHealth(((Player) sender).getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue());
             if(sender instanceof Player)
                 ((Player) sender).playSound(((Player) sender).getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 1);
             sender.sendMessage(ChatColor.GREEN + "You were successfully healed!");
-        }else {
+        }else if(sender.hasPermission("lifesteal.heal")){
             sender.sendMessage(ChatColor.RED + "Invalid Usage! Do /heal <username> <amount>!");
+        }else{
+            sender.sendMessage(ChatColor.RED + "You do not have the permission to execute this command!");
         }
 
 
