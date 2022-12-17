@@ -1,5 +1,5 @@
 name: Lifesteal
-version: '1.2'
+version: '1.2.1'
 main: com.spaceniklas.lifesteal.Lifesteal
 api-version: 1.16
 prefix: [ Lifesteal ]

@@ -21,17 +21,17 @@ public class WithdrawCommand implements CommandExecutor {
 
         //   /withdraw 10
         if(args.length == 1 && sender instanceof Player && Lifesteal.config.getBoolean("EnableWithdrawCommand")) {
+            if(args[0].equalsIgnoreCase("2147483647")){
+                sender.sendMessage(ChatColor.RED + "You can't withdraw more hearts than you have!");
+                return false;
+            }
             Player p = (Player) sender;
             if(!Lifesteal.config.getList("worlds").contains(p.getWorld().getName())&& Lifesteal.config.getBoolean("enabled")){
                 return false;
             }
             int amount = Integer.parseInt(args[0]);
 
-            ItemStack heart = new ItemStack(Material.NETHER_STAR, amount);
-            ItemMeta heartmeta = heart.getItemMeta();
-            heartmeta.setDisplayName(ChatColor.RED + "Heart");
-            heartmeta.setLore(Arrays.asList(ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Use 4 of these to craft a Totem of Revival!"));
-            heart.setItemMeta(heartmeta);
+            ItemStack heart = Lifesteal.heart;
 
             if(amount*2 < (int) Lifesteal.hearts.get(p.getUniqueId().toString()) && amount > 0) {
                 p.getInventory().addItem(heart);

@@ -27,12 +27,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 public final class Lifesteal extends JavaPlugin {
 
     public static YamlConfiguration hearts;
     public static File heartsfile;
+    public static YamlConfiguration item;
+    public static File itemfile;
     public static YamlConfiguration revive;
     public static File revivefile;
     public static FileConfiguration config;
@@ -42,6 +43,7 @@ public final class Lifesteal extends JavaPlugin {
     public static List<String> worlds;
     public static boolean enabled;
     public static Lifesteal instance;
+    public static ItemStack heart;
 
     @Override
     public void onEnable() {
@@ -122,9 +124,50 @@ public final class Lifesteal extends JavaPlugin {
         Lifesteal.eliminate = YamlConfiguration.loadConfiguration(eliminateFile);
 
         banlist = eliminate.getStringList("banlist");
-
         worlds = config.getStringList("worlds");
         enabled = config.getBoolean("enabled");
+
+        itemfile = new File(getDataFolder(), "heartitem.yml");
+
+        if(!itemfile.exists()){
+            try {
+                itemfile.createNewFile();
+                Lifesteal.item = YamlConfiguration.loadConfiguration(itemfile);
+                item.set("heart.displayname", "&cHeart");
+                item.set("heart.lore", "&d&oUse 4 of these to craft a Totem of Revival!");
+                item.set("heart.item", "NETHER_STAR");
+                item.set("heart.crafting.upper-left", "DIAMOND_BLOCK");
+                item.set("heart.crafting.upper-center", "OBSIDIAN");
+                item.set("heart.crafting.upper-right", "DIAMOND_BLOCK");
+                item.set("heart.crafting.middle-left", "OBSIDIAN");
+                item.set("heart.crafting.middle-center", "TOTEM_OF_UNDYING");
+                item.set("heart.crafting.middle-right", "OBSIDIAN");
+                item.set("heart.crafting.bottom-left", "DIAMOND_BLOCK");
+                item.set("heart.crafting.bottom-center", "OBSIDIAN");
+                item.set("heart.crafting.bottom-right", "DIAMOND_BLOCK");
+
+
+
+                item.set("totem-of-undying.displayname", "&cHeart");
+                item.set("totem-of-undying.lore", "&d&oUse 4 of these to craft a Totem of Revival!");
+                item.set("totem-of-undying.item", "NETHER_STAR");
+                item.set("totem-of-undying.crafting.upper-left", "DIAMOND_BLOCK");
+                item.set("totem-of-undying.crafting.upper-center", "OBSIDIAN");
+                item.set("totem-of-undying.crafting.upper-right", "DIAMOND_BLOCK");
+                item.set("totem-of-undying.crafting.middle-left", "OBSIDIAN");
+                item.set("totem-of-undying.crafting.middle-center", "TOTEM_OF_UNDYING");
+                item.set("totem-of-undying.crafting.middle-right", "OBSIDIAN");
+                item.set("totem-of-undying.crafting.bottom-left", "DIAMOND_BLOCK");
+                item.set("totem-of-undying.crafting.bottom-center", "OBSIDIAN");
+                item.set("totem-of-undying.crafting.bottom-right", "DIAMOND_BLOCK");
+
+            } catch (IOException e) {
+                Bukkit.getLogger().info("[Error] Can't load heartitem.yml file!");
+                e.printStackTrace();
+                return;
+            }
+        }
+
     }
 
     public void craftingRecipe(){
@@ -134,6 +177,7 @@ public final class Lifesteal extends JavaPlugin {
         heartmeta.setDisplayName(ChatColor.RED + "Heart");
         heartmeta.setLore(Arrays.asList(ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Use 4 of these to craft a Totem of Revival!"));
         heart.setItemMeta(heartmeta);
+        Lifesteal.heart = heart;
 
         ShapedRecipe heartrecipe = new ShapedRecipe(new NamespacedKey(this, "heart"), heart);
         heartrecipe.shape(
