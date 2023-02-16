@@ -86,6 +86,10 @@ public class HeartManager {
         }
     }
 
+    public static int get(Player target){
+        return Lifesteal.hearts.getInt(target.getUniqueId().toString());
+    }
+
 
 
 

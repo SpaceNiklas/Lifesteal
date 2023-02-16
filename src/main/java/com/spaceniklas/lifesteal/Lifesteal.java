@@ -128,7 +128,7 @@ public final class Lifesteal extends JavaPlugin {
         enabled = config.getBoolean("enabled");
 
         itemfile = new File(getDataFolder(), "heartitem.yml");
-
+        /*
         if(!itemfile.exists()){
             try {
                 itemfile.createNewFile();
@@ -167,6 +167,7 @@ public final class Lifesteal extends JavaPlugin {
                 return;
             }
         }
+         */
 
     }
 
@@ -185,8 +186,8 @@ public final class Lifesteal extends JavaPlugin {
                 "OTO",
                 "DOD");
 
-        heartrecipe.setIngredient('D', Material.DIAMOND_BLOCK);
         heartrecipe.setIngredient('O', Material.OBSIDIAN);
+        heartrecipe.setIngredient('D', Material.DIAMOND_BLOCK);
         heartrecipe.setIngredient('T', Material.TOTEM_OF_UNDYING);
         heartrecipe.setGroup("Lifesteal");
         if(config.getBoolean("EnableHeartCrafting"))
@@ -206,7 +207,7 @@ public final class Lifesteal extends JavaPlugin {
                 "HTH",
                 "DHD");
 
-        reviverecipe.setIngredient('D', Material.DIAMOND_BLOCK);
+        reviverecipe.setIngredient('D', Material.DIAMOND);
         reviverecipe.setIngredient('H', new RecipeChoice.ExactChoice(heart));// part not working
         reviverecipe.setIngredient('T', Material.TOTEM_OF_UNDYING);
         reviverecipe.setGroup("Lifesteal");

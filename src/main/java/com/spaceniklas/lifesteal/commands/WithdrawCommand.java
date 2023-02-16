@@ -21,7 +21,7 @@ public class WithdrawCommand implements CommandExecutor {
 
         //   /withdraw 10
         if(args.length == 1 && sender instanceof Player && Lifesteal.config.getBoolean("EnableWithdrawCommand")) {
-            if(args[0].equalsIgnoreCase("2147483647")){
+            if(Integer.parseInt(args[0]) > 200){
                 sender.sendMessage(ChatColor.RED + "You can't withdraw more hearts than you have!");
                 return false;
             }
@@ -32,6 +32,7 @@ public class WithdrawCommand implements CommandExecutor {
             int amount = Integer.parseInt(args[0]);
 
             ItemStack heart = Lifesteal.heart;
+            heart.setAmount(Integer.parseInt(args[0]));
 
             if(amount*2 < (int) Lifesteal.hearts.get(p.getUniqueId().toString()) && amount > 0) {
                 p.getInventory().addItem(heart);
